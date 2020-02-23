@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap');
 
+
 body {
   margin: 0;
   padding: 0;
@@ -11,6 +12,10 @@ body {
   font-size: 16px;
 }
 
+[v-cloak] {
+	display: none;
+}
+
 h1 {
   display: flex;
   justify-content: center;
@@ -18,10 +23,17 @@ h1 {
   font-size: 1.5em;
 }
 
+h2 {
+	font-size: 1em;
+	margin-top: 0;
+	margin-bottom: 0.5em;
+}
+
 
 section {
 	display: flex;
 	justify-content: center;
+	margin: 1em;
 }
 
 #word {
@@ -29,6 +41,23 @@ section {
 	font-size: 5em;
 }
 
+#score ul {
+	display: flex;
+	justify-content: center;
+	width: 38em;
+	min-height: 1em;
+	border-style: solid;
+	border-width: thin;
+	padding: 1em;
+}
+
+#score ul li {
+	
+	margin-left: 1em;
+	margin-right: auto;
+	list-style-type: none;
+	width: 50%;
+}
 
 button {
     display: block;
@@ -40,7 +69,7 @@ button {
     width: 20em;
     height: 3em;
     text-align: center;
-    margin: 2em auto;
+    margin: 2em 0.5em;
 }
 
 .win {
@@ -50,4 +79,10 @@ button {
 .lose {
 	color: red;
 }
+
+.reset-margin {
+	margin: 0;
+	padding: 0;
+}
+
 

@@ -24,8 +24,27 @@
     </header>
 	
 	<!-- the Vue app starts here -->
-	<div id='app'>
-		{{ playerName }}
+	<div id='app' v-cloak>
+		<section id="message" :class="messageStyle">{{ message }}</section>
+		<section id="word" :class="wordStyle">{{ word }}</section>
+		<section id="score">
+			<ul>
+				<li>
+					<h2>Score</h2>
+					<p class="reset-margin">- Player: {{ userScore }}</p>
+					<p class="reset-margin">- Computer: {{ computerScore }}</p>
+				</li>
+				<li v-if="scoreHistory[round-2]">
+					<h2>History</h2>
+					<p class="reset-margin" v-if="scoreHistory[round-2]">- {{ scoreHistory[round-2] }} won round {{ round-1 }}</p>
+					<p class="reset-margin" v-if="scoreHistory[round-3]">- {{ scoreHistory[round-3] }} won round {{ round-2 }}</p>
+				</li>
+			</ul>
+		</section>
+		<section v-if="restart" id="controls">
+			<button @click="start(false)">Rematch</button>
+			<button @click="reset">Start Over</button>	
+		</section>
 	</div>
     
 </body>
