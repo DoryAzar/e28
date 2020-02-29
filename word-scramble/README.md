@@ -1,6 +1,6 @@
 # Word Scramble
 + By: Dory Azar
-+ Production URL: e28word-scramble.broadposter.com
++ Production URL: [e28word-scramble.broadposter.com](http://e28word-scramble.broadposter.com)
 
 ## Outside resources
 
