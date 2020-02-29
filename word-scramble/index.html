@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template</title>
+	
+	 <!-- Style sheets-->
+    <link rel="stylesheet" href="css/styles.css">
+	
+	<!-- Scripts -->
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js" defer></script>
+	<script src="js/script.js" defer></script>
+	
+</head>
+
+
+<body>
+	
+    <header>
+        <h1>Word Scramble</h1>
+    </header>
+	
+	<!-- the Vue app starts here -->
+	<div id='app' v-cloak>
+		
+		<template v-if="state == 'start'">
+			<label for="firstname" :class="{ win: status == 'win', lose: status == 'lose' }">{{ message }}</label>
+			<section><input id="firstname" type="text" v-model.trim="firstname" @keyup.enter="play()" autofocus></section>
+			<section><button id="play" @click="play()">Play</button></section>
+		</template>
+		
+		<template v-if="state == 'play'">
+			<label for="guess" :class="{ win: status == 'win', lose: status == 'lose' }">{{ message }}</label>
+			<section :class="['word', wordStyle]">{{ scrambledWord }}</section>	
+			<section class="hint"><span class="hint-label">Hint:&nbsp;</span> {{ hint }}</section>
+			<section><input id="guess" type="text" v-model="guessedWord" @keyup.enter="guessWord()" autofocus></section>
+			<section><button @click="guessWord()">Guess</button></section>
+		</template>
+		
+		<template v-if="state == 'end'">
+			<label for="guess" :class="{ win: status == 'win', lose: status == 'lose' }">{{ message }}</label>
+			<section :class="['word', wordStyle]">{{ scrambledWord }}</section>	
+			<section><button @click="play()">Play Again</button></section>
+		</template>
+
+	</div>
+    
+</body>
+
+</html>

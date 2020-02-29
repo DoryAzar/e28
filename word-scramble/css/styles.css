@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap');
+
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  font-family: 'IBM Plex Sans', sans-serif;    
+  font-weight: lighter;
+  font-size: 16px;
+}
+
+[v-cloak] {
+	display: none;
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5em;
+}
+
+h2 {
+	font-size: 1em;
+	margin-top: 0;
+	margin-bottom: 0.5em;
+}
+
+
+section, label {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 1em;
+}
+
+input {
+	display: block;
+	font-size: 5em;
+	border: none;
+	border-bottom: 2px;
+	width: 5em;
+	border-bottom-style: solid;
+	text-align: center;
+
+}
+
+.word {
+	margin: 0.5em 0;
+	font-size: 5em;
+}
+
+.hint {
+	margin: 0;
+	font-size: 1em;
+}
+
+.hint-label {
+	font-weight: bold;
+}
+
+#score ul {
+	display: flex;
+	justify-content: center;
+	width: 38em;
+	min-height: 1em;
+	border-style: solid;
+	border-width: thin;
+	padding: 1em;
+}
+
+#score ul li {
+	
+	margin-left: 1em;
+	margin-right: auto;
+	list-style-type: none;
+	width: 50%;
+}
+
+button {
+    display: block;
+    cursor: pointer;
+    color: white;
+    background-color: black;
+    font-size: 1em;
+    border: none;
+    width: 20em;
+    height: 3em;
+    text-align: center;
+    margin: 2em 0.5em;
+}
+
+.win {
+	color: green;
+}
+
+.lose {
+	color: red;
+}
+
+.reset-margin {
+	margin: 0;
+	padding: 0;
+}
+
+
