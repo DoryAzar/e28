@@ -137,7 +137,7 @@ let app = new Vue({
 		// Simple methods that changes the feedback messages to add more realism
 		entice: function() {
 			let messages = ['Sorry that is not correct. Please try again.', 
-							'Don\'t discourage! You can do this ' + this.firsname,
+							'Don\'t discourage! You can do this ' + this.firstname,
 							'Keep it up...',
 							'Remember the combinations are not endless',
 							'It\s getting warmer...',
