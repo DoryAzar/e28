@@ -1,6 +1,6 @@
 # Project 1
 + By: Dory Azar
-+ Production URL: [p1.broadposter.com](http://p1.broadposter.com)
++ Production URL: [e28p1.broadposter.com](http://e28p1.broadposter.com)
 
 ## Outside resources
 
@@ -17,4 +17,14 @@
 ### Vue guide
 + [Understanding the lifecycle](https://vuejs.org/v2/guide/instance.html#Instance-Lifecycle-Hooks)
 
-## Notes for instructor
+## Techniques used
+
++ The game uses 2 components. One illustrates root to component communication through props. Another illustrates event propagation from the component to the root
+
++ Watchers have been used to track number of tries and determine the end of the game
+
++ Reactivity has been leveraged the most in 2 areas: 1) in displaying the masked word as the player try to guess the characters. 2) in displaying dynamic messages throughout the game
+
++ Dynamic message styling to focus the user attention on the different states of the game
+
++ Minimal validation to make sure that the player does not get punished for typing numbers or keys like Shift and Caps Lock. A setting for expanding the acceptable keys has also been created for scalability
