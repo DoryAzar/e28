@@ -36,12 +36,12 @@ section {
 	margin: 1em;
 }
 
-#word {
+.word {
 	margin: 0.5em 0;
 	font-size: 5em;
 }
 
-#score ul {
+.score ul {
 	display: flex;
 	justify-content: center;
 	width: 38em;
@@ -51,7 +51,7 @@ section {
 	padding: 1em;
 }
 
-#score ul li {
+.score ul li {
 	
 	margin-left: 1em;
 	margin-right: auto;

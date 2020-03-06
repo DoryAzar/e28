@@ -26,8 +26,8 @@
 	<!-- the Vue app starts here -->
 	<div id='app' v-cloak>
 		<section id="message" :class="messageStyle">{{ message }}</section>
-		<section id="word" :class="wordStyle">{{ word }}</section>
-		<section id="score">
+		<section class="word" :class="wordStyle">{{ maskedWord }}</section>
+		<section class="score">
 			<ul>
 				<li>
 					<h2>Score</h2>
@@ -43,7 +43,7 @@
 		</section>
 		<section v-if="restart" id="controls">
 			<button @click="start(false)">Rematch</button>
-			<button @click="reset">Start Over</button>	
+			<button @click="start()">Start Over</button>	
 		</section>
 	</div>
     

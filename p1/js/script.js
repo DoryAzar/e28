@@ -4,11 +4,11 @@ let game = new Vue({
 	data: {
 		settings: {
 			words: ['Apple', 'Banana', 'Pear', 'Husky', 'Bichon', 'Javascript', 'Harvard', 'Vue', 'Framework', 'Server', 'Client', 'MySQL', 'Internet', 'Browser', 'Console', 'Cookies', 'Storage', 'Production', 'Development', 'Git', 'Github', 'DigitalOcean', 'VSCode', 'Brackets', 'Laravel', 'PHP', 'Angular', 'React'],
-			permittedKeyCodes: [20, 16] // caps lock and shift are permitted
+			permittedKeyCodes: [20, 16], // caps lock and shift are permitted
+			strikes: 6
 		},
 		strikes: 6,
 		status: false,
-		word: '',
 		wordStyle: '',
 		selectedWord: '',
 		maskedWord: '',
@@ -21,36 +21,70 @@ let game = new Vue({
 		scoreHistory: []
 	},
 	
+	watch: {
+		
+		// watch the strikes property to control messaging and end the game 
+		strikes() {
+			
+			if (this.strikes == this.settings.strikes) {
+				switch (this.round) {
+					case 1:
+						this.displayMessage('You have 6 guesses to unveil the mystery word. Type a letter...');
+						break;
+					default:
+						this.displayMessage("Round " + this.round);
+				}
+			} else if (this.strikes > 0) {
+				
+				// display remaining number of guesses
+				this.displayMessage(this.strikes + " guess(es) remaining...");
+				
+			} else {
+				
+				// end the game when strikes are out
+				this.end();
+			}
+			
+		
+		}
+		
+	},
+	
 	methods: {
+		
+	
+		/* Mode Initializer
+		 * Initializes the game when the application is mounted
+		 */
+		initialize: function() 
+		{	
+				
+			// A window event listener needs to be created at mounted in VueJS
+			window.addEventListener('keyup', (e) => {
+
+
+				// check if the game is active and if the key entered is alphabetical
+				if (this.status && e.keyCode >= 65 && e.keyCode <= 90) return this.checkCharacter(e);
+
+				// if the game is active but not alphabetical key then notify the player. Shift and Caps Lock are permitted keys
+				else if (this.status && (!this.settings.permittedKeyCodes.includes(e.keyCode))) this.displayMessage('Make sure to enter letters only. ' + this.strikes + ' guess(es) remaining...', 'lose');
+
+			});
+			
+			
+		},
 		
 		/* 
 		 * Game starter
+		 * @mode: set to true if all game variables need to be reset to start from fresh
 		 * 
 		 */
 		start: function(mode = true) {
 			
-			this.initialize(mode);
-			this.newWord();
-			this.drawWord();
-			
-		},
-		
-		
-		/* Mode Initializer
-		 * @mode: 
-		 * - if true, mode is the initial startup that adds a window click listener
-		 * - Otherwise, no window click listener is added
-		 */
-		initialize: function(mode) 
-		{
-			
-			
-			// reset all variables upon initialization
+			// reset variables upon initialization
 			this.status = true;
-			this.strikes = 6;
-			this.word = '';
+			this.strikes = this.settings.strikes;
 			this.wordStyle = '';
-			this.selectedWord = '';
 			this.maskedWord ='';		
 			this.messageStyle = '';
 			this.restart = null;
@@ -60,32 +94,37 @@ let game = new Vue({
 				this.displayMessage("Round " + this.round);
 			}
 			
-			// click listener added once upon game creation
-			if (mode)  {
-				
-				// A window event listener needs to be created at mounted in VueJS
-				window.addEventListener('keyup', (e) => {
-					
-					
-					// check if the game is active and if the key entered is alphabetical
-					if (this.status && e.keyCode >= 65 && e.keyCode <= 90) return this.checkCharacter(e);
-					
-					// if the game is active but not alphabetical key then notify the player. Shift and Caps Lock are permitted keys
-					else if (this.status && (!this.settings.permittedKeyCodes.includes(e.keyCode))) this.displayMessage('Make sure to enter letters only. ' + this.strikes + ' guess(es) remaining...', 'lose');
-
-				});
+			// if it is a reset mode then reset all remaining variables to start from fresh
+			if (mode) {
+				this.selectedWord = '';
+				this.userScore = 0;
+				this.computerScore = 0;
+				this.round = 1;
+				this.scoreHistory = [];			
 			}
 			
+			// generate a new word
+			this.newWord();
+			
 		},
+		
+		
 		
 		/* 
 		 * newWord function that allows the system to pick a work randomly and mask it
 		 */
 		newWord: function() {
 			
+			let previousWord = this.selectedWord;
+			
 			// get the list of words and pick one randomly
 			this.words = this.settings.words;
-			this.selectedWord = this.settings.words[this.words.length * Math.random() << 0]; 
+			this.selectedWord = this.settings.words[this.words.length * Math.random() << 0];
+			
+			// avoid repeating the same word twice in a row
+			if (this.selectedWord === previousWord) {
+				this.newWord();
+			}
 
 			// mask the word with dashes
 			this.maskedWord = '-'.repeat(this.selectedWord.length);
@@ -93,16 +132,7 @@ let game = new Vue({
 		
 		
 		/*
-		 * drawWord function that renders the word on the page
-		 * @style: defines the style in which the word will be rendered
-		 */
-		drawWord: function(style) {
-			
-			this.word = this.maskedWord;
-		},
-		
-		/*
-		 * drawWord function that renders the word on the page
+		 * checkCharacter function that renders the word on the page
 		 * @e: defines the key event that will be checked against the word
 		 */		
 		checkCharacter: function(e) {
@@ -125,7 +155,6 @@ let game = new Vue({
 
 			// reveal word on the page
 			this.maskedWord = replacement.join("");
-			this.drawWord();
 
 			// check if win
 			if (this.selectedWord.toLowerCase() == this.maskedWord.toLowerCase()) this.success();
@@ -134,16 +163,8 @@ let game = new Vue({
 			if (!match) {
 				this.strikes--;
 
-				if (this.strikes > 0) {
-					// display remaining number of guesses
-					this.displayMessage(this.strikes + " guess(es) remaining...");
-				} else {
-					this.end();
-				}
-
 			}			
 		},
-		
 
 		/*
 		 * end function that ends the game when all strikes are out
@@ -207,7 +228,6 @@ let game = new Vue({
 			this.round++;
 			
 			this.wordStyle = style || '';
-			this.drawWord(style);
 		
 		},
 
@@ -224,24 +244,16 @@ let game = new Vue({
 			this.message = msg;
 			this.messageStyle = style || '';
 			
-		},
-
-		
-		
-		/*
-		 * Reloads the game
-		 * 
-		 */			
-		reset: function() {
-			
-			location.reload();
-			
 		}
 		
 	},
+	
 	mounted () {
 		
-		// Start the game
+		// Initialize the game 
+		this.initialize();
+		
+		// start the game
 		this.start();
 		
 	}
