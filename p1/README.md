@@ -23,7 +23,7 @@
 
 + Watchers have been used to track number of tries and determine the end of the game
 
-+ Reactivity has been leveraged the most in 2 areas: 1) in displaying the masked word as the player try to guess the characters. 2) in displaying dynamic messages throughout the game
++ Reactivity has been leveraged the most in 2 areas: 1) in displaying the masked word as the player tries to guess the characters. 2) in displaying dynamic messages throughout the game
 
 + Dynamic message styling to focus the user attention on the different states of the game
 
