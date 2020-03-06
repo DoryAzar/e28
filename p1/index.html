@@ -23,10 +23,20 @@
         <h1>Mystery Word</h1>
     </header>
 	
-	<!-- the Vue app starts here -->
+	
+	<!-- VUE APP STARTS HERE -->
 	<div id='app' v-cloak>
 		<section id="message" :class="messageStyle">{{ message }}</section>
 		<section class="word" :class="wordStyle">{{ maskedWord }}</section>
+		<score-board :user-score='userScore' :computer-score='computerScore' :score-history='scoreHistory' :round='round'></score-board>
+		<game-controls @game-restart='start($event)' :restart='restart'></game-controls>
+	</div>
+	
+	
+	<!-- TEMPLATES FOR OUR COMPONENTS -->
+	
+	<!-- Scoreboard template -->
+	<script type='text/x-template' id='score-board'>
 		<section class="score">
 			<ul>
 				<li>
@@ -41,11 +51,15 @@
 				</li>
 			</ul>
 		</section>
+	</script>
+	
+	<!-- Controls template -->
+	<script type='text/x-template' id='game-controls'>
 		<section v-if="restart" id="controls">
-			<button @click="start(false)">Rematch</button>
-			<button @click="start()">Start Over</button>	
+			<button @click="$emit('game-restart', false)">Rematch</button>
+			<button @click="$emit('game-restart', true)">Start Over</button>	
 		</section>
-	</div>
+	</script>
     
 </body>
 

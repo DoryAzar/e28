@@ -1,3 +1,41 @@
+/* Components Definition
+ * @score-board: Component showing the score and history board
+ * @game-controls: Component showing the game controls
+ */
+
+// Score Board component
+Vue.component('score-board', {
+
+	template: '#score-board',
+	props: ['user-score', 'computer-score', 'score-history', 'round']
+	
+});
+
+// Game controls buttons component
+Vue.component('game-controls', {
+	template: '#game-controls',
+	props: ['restart']
+	
+});
+
+
+/* Game Root
+ * @components: score-board, game-controls
+ *
+ * @methods: 
+ * - initialize: initializes the window event listener for the game
+ * - start: game starter that reinitializes all variables and picks a new word
+ * - newWord: word picker that uses a random algorithm to pick a word from the dictionary
+ * - checkCharacter: verifies if the entered character is present in the mystery word
+ * - end: exit state upon loss
+ * - success: exit state upon win
+ * - replay: Adds another round to the game without restarting the game
+ * - displayMessage: changes the message board
+ *
+ * @watch:
+ * - strikes: defines the number of trials. Upon reaching the game setting max, the game ends
+ */
+
 let game = new Vue({
 	
 	el: '#app',
