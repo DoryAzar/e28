@@ -14,6 +14,7 @@
 + [Let's get started](https://github.com/DoryAzar/facedetect#lets-get-started)
 + [Let's get through the basics](https://github.com/DoryAzar/facedetect#lets-get-through-the-basics)
 + [Let's have some fun](https://github.com/DoryAzar/facedetect#lets-have-some-fun)
++ [Known Issues](https://github.com/DoryAzar/facedetect#known-issues)
 
 <br />
 
@@ -93,4 +94,6 @@ Artificial Intelligence (AI) and Machine Learning in particular don't have to be
 
 ### Create your custom application
 
+<br />
 
+## Known Issues
