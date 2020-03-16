@@ -2,7 +2,7 @@
 + By: Dory Azar
 + Production URL: [here]()
 
-![facedetect]()
+![](https://github.com/DoryAzar/e28/blob/master/independent-study/resources/facedetect1.png)
 
 
 <br />
