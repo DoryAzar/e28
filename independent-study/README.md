@@ -1,20 +1,19 @@
 # FaceDetect: Face detection & recognition framework
 + By: Dory Azar
-+ Production URL: [here]()
 
 ![](https://github.com/DoryAzar/e28/blob/master/independent-study/resources/facedetect1.png)
-
 
 <br />
 
 ## Content
 
-+ [What is it?](https://github.com/DoryAzar/facedetect#what-is-it)
-+ [Credits & Resources](https://github.com/DoryAzar/facedetect#credits--resources)
-+ [Let's get started](https://github.com/DoryAzar/facedetect#lets-get-started)
-+ [Let's get through the basics](https://github.com/DoryAzar/facedetect#lets-get-through-the-basics)
-+ [Let's have some fun](https://github.com/DoryAzar/facedetect#lets-have-some-fun)
-+ [Known Issues](https://github.com/DoryAzar/facedetect#known-issues)
++ [What is it?]()
++ [Credits & Resources]()
++ [Let's get started]()
++ [Let's get through the basics]()
++ [Let's have some fun]()
++ [Final Thoughts]()
++ [Known Issues]()
 
 <br />
 
@@ -34,7 +33,7 @@ Artificial Intelligence (AI) and Machine Learning in particular don't have to be
 
 * [face-api library](https://github.com/justadudewhohacks/face-api.js/): this project uses the face api javascript library developed by Vincent Muhler
 
-* detect.js: Proprietary open source class that I created to make the use of the face-api library easier to use and to integrate in third party applications and frameworks
+* detect.js: Proprietary open source class that I created to make the use of the face-api library easier to use and to integrate in third party applications and frameworks. `detect.js` is included in the package
 
 * [TensorFlow](https://www.tensorflow.org/): Tensor flow is an end-to-end open source platform with comprehensive tools and libraries that lets developers easily build machine learning powered applications
 
@@ -44,20 +43,13 @@ Artificial Intelligence (AI) and Machine Learning in particular don't have to be
 
 ## Let's get started
 
+### Requirements
 
 ### Installation
 
-
 ### Testing the package
 
-
 ### Understanding the file structure
-
-#### **`app folder`**
-
-
-#### **`facedetect folder`**
-
 
 <br />
 
@@ -65,35 +57,25 @@ Artificial Intelligence (AI) and Machine Learning in particular don't have to be
 
 ### Understanding Face detection and recognition
 
-
 ### Understanding the FaceDetect `app`
 
-
-#### The `basic` app as a starting point
-
-
-#### The HTML markup components
-
-
-#### The Vue Javascript
-
-
 <br />
-
 
 ## Let's have some fun
 
-### Your first Face Detection application
+### App 1: Simple Face Detection
 
+### App 2: Profile Faces
 
-### Application that detects age, gender and emotions
+### App 3: Recognize me
 
-
-### Your first Face Recognition application
-
-
-### Create your custom application
+### App 4: Custom App
 
 <br />
 
+## Final Thoughts
+<br />
+
 ## Known Issues
+
+<br />
