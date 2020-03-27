@@ -8,11 +8,10 @@
     <title>Word Scramble</title>
 	
 	 <!-- Style sheets-->
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="/src/css/styles.css">
 	
 	<!-- Scripts -->
-	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js" defer></script>
-	<script src="js/script.js" defer></script>
+	<script src='/js/master.js' defer></script>
 	
 </head>
 
@@ -48,10 +47,6 @@
 		</template>
 
 	</div>
-	
-	<template type='text/x-template' id='game-feedback'>
-		<label :class="{ win: feedbackStatus == 'win', lose: feedbackStatus == 'lose' }">{{ feedbackMessage }}</label>
-	</template>
     
 </body>
 

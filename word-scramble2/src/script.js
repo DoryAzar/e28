@@ -1,15 +1,12 @@
-// Score Board component
-Vue.component('game-feedback', {
-
-	template: '#game-feedback',
-	props: ['feedback-status', 'feedback-message']
-	
-});
-
+import Vue from 'vue';
+import GameFeedback from "./components/GameFeedback.vue";
 
 let app = new Vue({
 	
 	el: '#app',
+	components: {
+		'game-feedback': GameFeedback	
+	},
 	data: {
 		
 		settings: {
