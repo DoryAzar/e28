@@ -1,5 +1,7 @@
 # FaceDetect: Face detection & recognition framework
 + By: Dory Azar
++ Video Demo: [Recorded Examples](https://www.youtube.com/watch?v=vytJRSOeZ8k&feature=youtu.be)
++ Live Demo: [FaceDetect Examples](http://facedetect.caligrafy.com)
 
 ![](https://github.com/DoryAzar/e28/blob/master/independent-study/resources/facedetect1.png)
 
@@ -7,13 +9,13 @@
 
 ## Content
 
-+ [What is it?]()
-+ [Credits & Resources]()
-+ [Let's get started]()
-+ [Let's get through the basics]()
-+ [Let's have some fun]()
-+ [Final Thoughts]()
-+ [Known Issues]()
++ [What is it?](https://github.com/DoryAzar/e28/tree/master/independent-study#what-is-it)
++ [Credits & Resources](https://github.com/DoryAzar/e28/tree/master/independent-study#credits--resources)
++ [Let's get started](https://github.com/DoryAzar/e28/tree/master/independent-study#lets-get-started)
++ [Let's get through the basics](https://github.com/DoryAzar/e28/tree/master/independent-study#lets-get-through-the-basics)
++ [Let's have some fun](https://github.com/DoryAzar/e28/tree/master/independent-study#lets-have-some-fun)
++ [Final Thoughts](https://github.com/DoryAzar/e28/tree/master/independent-study#final-thoughts)
++ [Known Issues](https://github.com/DoryAzar/e28/tree/master/independent-study#known-issues)
 
 <br />
 
@@ -21,7 +23,7 @@
 
 Detecting human faces and recognizing faces and facial expressions has always been an area of interest for different applications such as games, utilities and even security. With the advancement of machine learning, the techniques of detection and recognition have become more accurate and precise than ever before.
 
-However, machine learning remains a relatively complex field that could feel intimidating or inaccessible to many of us. Luckily, in the last couple of years, several organizations and open source communities have been developing tools and libraries that help abstract the complex mathematical agorithms in order to encourage developers to easily create learning models and train them using any programming languages. 
+However, machine learning remains a relatively complex field that could feel intimidating or inaccessible to many of us. Luckily, in the last couple of years, several organizations and open source communities have been developing tools and libraries that help abstract the complex mathematical algorithms in order to encourage developers to easily create learning models and train them using any programming languages. 
 
 As part of this study, I created a Javascript framework built on top of the work of several open source projects and models with the hope to reduce the entry barrier for developers and to encourage them to focus more on developing innovative applications that make use of face detection and recognition.
 
@@ -45,11 +47,63 @@ Artificial Intelligence (AI) and Machine Learning in particular don't have to be
 
 ### Requirements
 
++ Internet connection: FaceDetect references a CDN distribution of Vue that requires a connection to the internet
+
++ Webcam: The FaceDetect framework does not require a webcam. However, the examples in this study are designed to detect faces live from a webcam stream
+
+<br />
+
 ### Installation
+
+The FaceDetect package can be downloaded from the [FaceDetect Github](https://github.com/DoryAzar/facedetect) repository by either downloading the ZIP folder or by running the following command from the terminal:
+
+```bash
+git clone git@github.com:DoryAzar/facedetect.git
+
+```
+<br />
 
 ### Testing the package
 
+Once the FaceDetect package is downloaded, you can test it by running the out-of-the-box application that comes with it.
+In order to run that application, navigate to the folder where FaceDetect was downloaded then run `facedetect > app > basic > index.html` by double clicking on the `index.html`. 
+
+> If you downloaded the package in your server root then you should be able to run it directly through this url: <http://localhost/facedetect/app/basic>
+
+<br />
+
 ### Understanding the file structure
+
+Just like any framework, FaceDetect comes with a structure of its own. Understanding that structure is key to understanding the different components of the framework and how they interact with each other.
+
+#### **`app` folder**
+
+All the applications that you will create reside in this folder. For example, `basic` - the application that we used to test the installation - is also in this folder. Each application is a folder of its own and it consists of the following:
+
++ `main.js`: The VueJS script file
+
++ `index.html`: The markup HTML file that will reference the VueJS instance
+
+<br/>
+
+#### **`app template`**
+
+In the `app` folder, an `app_template` folder with a template HTML markup and Vue script is provided for your convenience. You can simply copy this folder and rename it as a starting point for every application that you want to create.
+
+<br />
+
+#### **`facedetect` folder**
+
+In this folder lies the core definition of the detection and recognition framework. There are 4 key components to this framework:
+
++ `FaceDetector` class: This is the core class for using `FaceDetect` in your application. The core code is in `detect.js` that can be found in the `scripts` folder
+
++ `models`: Every machine learning application relies on trained models to be able to do things such as object detection or recognition. FaceDetect is no exception to that rule and it needs these models to operate properly. These pre-trained models are included in the package and can be found in the `models` folder
+
++ `recognition` models: In order to recognize specific faces, `FaceDetect` needs models to compare the detections to. These models are nothing more but a series of pictures of people organized in folders. These need to be created under the folder called `recognition`. As an example, you can find a subfolder called `Flash` that has 6 (PNG) pictures named by number of the superhero Flash. The same mechanism should be used to create more models (pictures of you for example). We will elaborate more on face recognition when we create our first face recognition application
+
++ `faceapi.js`: The FaceAPI developed by Vincent Muhler is included in the package
+
 
 <br />
 
@@ -57,25 +111,172 @@ Artificial Intelligence (AI) and Machine Learning in particular don't have to be
 
 ### Understanding Face detection and recognition
 
+Detection and Recognition are two different concepts. While both use machine learning and neural networks in particular, they achieve different things. Understanding the distinction is key to better understanding how the FaceDetect framework operates.
+
++ **Face detection**: Face detection is about identifying a human face among all other "things" perceived through either an image or a video. So for example, a picture or a video can have people, objects, scenery etc... Face detection is when the system is capable of pointing out the presence of a human face among all those other things.
+
++ **Face recognition**: Recognition is about identifying who the human face is among all other faces and things perceived. So for example, Face recognition is when the system is capable of pointing out "Flash" among all other superheroes in a picture or a video.
+
+<br />
+
 ### Understanding the FaceDetect `app`
+
+FaceDetect relies on an important principle: "First you detect then you do something with the detections". With that principle in mind, the framework focuses on providing an easy-to-code sandbox for you to do something with the detections. Each sandbox is an `app` of its own. So if you intend to detect the age of a face or detect the facial expressions or count the number of people or recognize a face etc.. Each one of those is referred to as an `app`.
+
+The FaceDetect `app` is a Vue application that - similarly to all Vue applications - relies on both an HTML markup file and a Javascript file.
+
+<br />
+
+#### The `basic` and `app_template` apps
+
+Every application that you create resides in the `app` folder. The `basic` app that comes with the package illustrates the usage of the FaceDetect methods and properties. The `app_template` is a barebone folder structure that can be duplicated within the `app` folder and renamed as a starting point for your application.
+
+<br />
+
+#### The HTML markup components
+
+The HTML markup file (index.html for example) is the user interface that will define the source of the face detections (image or video) and any other controls needed to make something useful with the detections. It should also include the FaceDetect needed libraries and the Vue JS framework reference.
+
+The HTML markup has 4 key elements that are designed to work with and without Vue:
+
+
++ **`detector section`**: `FaceDetect` is identified in the markup by the id **`detector`**. `FaceDetect` will be encapsulated within that block. If you are using Vue, the `detector` block lives within the Vue app id.
+
+	```html
+
+	<!-- Vue app -->
+	<div id="app">
+	   <section id="detector">
+	   ....
+	   </section>
+	</div>
+
+	```
+
+<br />
+
++ **Media source**: No matter what you want to do with FaceDetect, detection is the first step to it. It is therefore important to identify what the detection source is. Is it an image, a video or a live webcam?
+
+	The markup of your application needs to provide that source:
+
+	```html
+	<!-- Beginning of the app -->
+	<div id="app">
+
+	   <section id="detector">
+
+		  <!-- media can be an image 
+		  <img id="detection" class="show" src="">
+		  -->
+
+		  <!-- media can be a video 
+		  <video id="detection" src="<video local url>" type="video/mp4" width="720" height="560" class="show" autoplay="autoplay" muted playsinline controls></video>
+		  -->
+
+		  <!-- media can be live webcam -->
+		  <video id="detection" width="720" height="560" class="show" autoplay="autoplay" muted playsinline></video>
+
+	   </section>
+
+	</div>
+
+	```
+<br />
+
++ **Controls**: So far, only the source has been specified. In order to do something with it, it needs one or more UI triggers to activate it. `FaceDetector` provides you with a way to create these controls if you desire. In order to do that, you will need to add the `controls` placeholder to your markup.
+
+	```html
+
+	<section class="controls">
+	   <div id="apps"></div>
+	</section>
+
+	```
+<br />
+
++ **Infobar**: `FaceDetect` provides you with a UI component to display welcome messages, status or instruction messages called `Infobar`. In order to use it, you will need to add the `infobar` placeholder to your markup.
+
+	```html
+
+	<section id="infobar"></section>
+
+	```
+
+<br />
+
+#### The Vue Javascript
+
+FaceDetect is a framework that was designed to work as a third-party library with any Javascript code. In this study, we focus primarily on running FaceDetect with Vue. Since FaceDetect was not written as a Vue component per se, it will need to be instantiated as part of the Vue script that is serving the markup.
+
+`FaceDetector` is the main object of the FaceDetect framework. It can be instantiated in the Vue script by providing it with the HTML ID of the media source. It is therefore important to make sure that the markup for either an image or a video has an id attribute.
+
+The main structure of the Vue script should look like this:
+
+```js
+
+// make sure to use the HTML id of the media source
+var detector = new FaceDetector('detection');
+
+var app = new Vue({
+  el: '#app',
+  data () {
+    return {
+        detector: detector, /* important */
+        env: env
+
+    }
+  },
+  /* Method Definition  */
+  methods: {
+      
+      
+  },
+  /* upon object load, the following will be executed */
+  mounted () {
+      
+      
+  }
+
+});
+
+
+```
+
+> The `basic` app included in the package shows you examples of the HTML markup as well as the Vue script that serves it.
 
 <br />
 
 ## Let's have some fun
 
+
 ### App 1: Simple Face Detection
+
 
 ### App 2: Profile Faces
 
+
 ### App 3: Recognize me
+
 
 ### App 4: Custom App
 
-<br />
 
 ## Final Thoughts
+
+FaceDetect is designed with the intent to abstract the underlying machine learning concepts that drive face detection and recognition. In this study, we gave you a glimpse on how a few lines of code can allow you to introduce face detection and recognition in your applications.
+
+The framework is flexible to accommodate the needs of developers of all levels. There are more advanced features and properties that have not been illustrated in this study that are worth highlighting in conclusion.
+
 <br />
+
+### Hooks
+
+
+### FaceDetect Features
+
 
 ## Known Issues
 
-<br />
+
+
+
