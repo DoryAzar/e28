@@ -1,17 +1,18 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-	<router-view></router-view>
-  </div>
+	<div class="spacer-4"></div>
+    <div class="wrapper bounded-large">
+		<router-view></router-view>
+	</div>
+</div>
 </template>
 
 <script>
+	
 export default {
-  name: 'App',
-  components: {
-    
-  }
-}
+	name: 'App'
+
+};
 </script>
 
-<style src='./assets/css/styles.css'></style>
+<style src='@/assets/css/styles.css'></style>
