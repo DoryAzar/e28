@@ -1,6 +1,5 @@
 <template>
     <div id='posters'>
-        <h2>Posters</h2>
         <show-poster v-for='poster in posters' :key='poster.id' :poster='poster'></show-poster>
     </div>
 </template>
@@ -24,12 +23,10 @@ export default {
 		};
 	},
 	mounted() {
-		console.log('posters');
 		axios
 		.get(this.apiRoute, this.app.apiConfig)
 		.then(response => { 
 			this.posters = response.data;  
-			console.log(this.posters);
 		});
 	}
 };

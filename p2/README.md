@@ -4,21 +4,30 @@
 
 ## Description
 
-Broadposter is a tool that helps anyone - individuals or businesses (such as Zipfoods) - easily create personalized online stores to sell their products online. Using Broadposter's intuitive interface, you can easily create and manage your catalog of products, control the availability of your products, set the selling prices and promotional prices and last not least, personalize the online store to make it match your brand.
+Broadposter is a broadcast application that allows users to share stories with the community.
 
 
 ## Pages summary
-+ Product Catalog page
-+ Manage product page
-+ Store 
-+ Product page
++ Posters Page
++ Poster Page
++ Manage Poster Page 
++ Home Page
 
 
 ## SFC summary
-*List the SFCs of your application*
++ ShowNavigation
++ ShowPosters
++ ShowPoster
++ PosterForm
   
 ## Server interaction
-*List the features in your application that are persisting and retrieving data from the server*
++ PHP backend was created serving results through a REST-ful API
++ CRUD interactions:
+	+ Create a poster
+	+ Retrieve all posters
+	+ Retrieve details of a specific poster
+	+ Update a specific poster
+	+ Delete a specific poster
 
 ## Outside resources
 *Your list of outside resources go here*

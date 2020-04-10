@@ -9,10 +9,10 @@ Vue.config.productionTip = false
 
 // define the routes
 const routes = [
-	{ path: '/', component: PostersPage, name: 'posters' },
-	{ path: '/other', component: PostersPage, name: 'other' }, // adding name makes it easy to reference later
-	{ path: '/dynamic/:id', component: App, name: 'dynamic'},  // Loading dynamic params read from $route
-	{ path: '/dynamic/:id', component: App, name: 'dynamic', props: true}  // Loading dynamic params into props of component directly
+	{ path: '/', component: PostersPage, name: 'posters' }
+	//{ path: '/other', component: PostersPage, name: 'other' }, // adding name makes it easy to reference later
+	//{ path: '/dynamic/:id', component: App, name: 'dynamic'},  // Loading dynamic params read from $route
+	//{ path: '/dynamic/:id', component: App, name: 'dynamic', props: true}  // Loading dynamic params into props of component directly
 ];
 
 // initialize the router
