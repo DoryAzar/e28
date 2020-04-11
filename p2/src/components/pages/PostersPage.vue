@@ -1,19 +1,19 @@
 <template>
     <div id='posters'>
-        <show-poster v-for='poster in posters' :key='poster.id' :poster='poster'></show-poster>
+        <show-posters v-for='poster in posters' :key='poster.id' :poster='poster'></show-posters>
     </div>
 </template>
 
 <script>
 const axios = require('axios');
 import * as app from '@/common/app.js';
-import ShowPoster from '@/components/ShowPosters.vue';
+import ShowPosters from '@/components/ShowPosters.vue';
 
 
 export default {
     name: 'posters',
     components: {
-        'show-poster': ShowPoster
+        'show-posters': ShowPosters
     },
 	data() {
 		return {
