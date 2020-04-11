@@ -9,7 +9,7 @@
 			<router-view></router-view>
 		</div>
 	</div>
-	<div class='spacer-4'></div>
+	<div class='spacer-2'></div>
 	<footer>
 		<p class='small-text semi-bold horizontal-center'>Copyright &copy; 2020</p>
 	</footer>      
