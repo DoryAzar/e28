@@ -22,7 +22,7 @@ const router = new VueRouter({
 });
 
 
-
+// Instantiate the vue instance
 new Vue({
   router: router,
   render: h => h(App),
