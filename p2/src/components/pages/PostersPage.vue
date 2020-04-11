@@ -1,3 +1,10 @@
+<!-- Posters Page
+Router page for rendering all posters
+@posters: Retrieves all posters from the API
+
+Components Dependency
+@show-posters: component responsible rendering the posters
+-->
 <template>
     <div id='posters'>
         <show-posters v-for='poster in posters' :key='poster.id' :poster='poster'></show-posters>
@@ -6,7 +13,7 @@
 
 <script>
 import * as app from '@/common/app.js';
-import ShowPosters from '@/components/ShowPosters.vue';
+import ShowPosters from '@/components/posters/ShowPosters.vue';
 
 
 export default {

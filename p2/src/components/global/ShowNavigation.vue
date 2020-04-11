@@ -1,9 +1,12 @@
+<!-- Show Navigation Component
+Global component responsible for rendering the global navigation of the application
+-->
 <template>
     <header class='color0'>
 		<nav class='horizontal'>
 			<div class="spacer-1"></div>
 			<h1 class='large-text horizontal-center'>
-				<a href=''>
+				<a href='#'>
 					<span class='semibold'>Broad</span>
 					<span>poster</span>
 				</a>
@@ -15,6 +18,6 @@
 
 <script>
 export default {
-    name: ''
+    name: 'show-navigation'
 };
 </script>

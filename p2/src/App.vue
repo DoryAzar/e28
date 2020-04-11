@@ -1,5 +1,5 @@
 <template>
-  <div id='app'>
+  <div id='app' v-cloak>
 	<show-navigation></show-navigation>
 	<div class='container'>
 		<div class='shadowCoverTop color0'></div>
@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import ShowNavigation from '@/components/ShowNavigation';
+import ShowNavigation from '@/components/global/ShowNavigation';
 	
 export default {
 	name: 'App',
