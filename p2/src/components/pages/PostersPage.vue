@@ -5,7 +5,6 @@
 </template>
 
 <script>
-const axios = require('axios');
 import * as app from '@/common/app.js';
 import ShowPosters from '@/components/ShowPosters.vue';
 
@@ -23,7 +22,7 @@ export default {
 		};
 	},
 	mounted() {
-		axios
+		app.callApi
 		.get(this.apiRoute, this.app.apiConfig)
 		.then(response => { 
 			this.posters = response.data;  
