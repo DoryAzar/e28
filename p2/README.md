@@ -4,7 +4,7 @@
 
 ## Description
 
-Broadposter is a broadcast application that allows users to share stories with the community.
+Broadposter allows users to share stories, memories, articles or just any piece of information with the community.
 
 
 ## Pages summary
