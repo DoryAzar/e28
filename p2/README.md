@@ -8,14 +8,20 @@ Broadposter allows users to share stories, memories, articles or just any piece 
 
 
 ## Pages summary
-+ Posters Page
-+ Poster Page
++ Posters Page: page displaying all the posters
++ Poster Page: page displaying details of a specific poster
++ Error Page: page displaying a dynamic error message
 + Manage Poster Page 
 + Home Page
 
 
 ## SFC summary
-+ ShowNavigation
+
+### Global Components
++ ShowNavigation: displays the global navigation
++ ShowError: displays an error message on a page
+
+### Poster Components
 + ShowPosters
 + ShowPoster
 + PosterForm
