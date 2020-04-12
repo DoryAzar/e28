@@ -20,7 +20,6 @@ Component Dependency:
 import * as app from '@/common/app.js';
 import PosterForm from '@/components/posters/PosterForm.vue';
 
-
 export default {
     name: 'manageform',
     components: {

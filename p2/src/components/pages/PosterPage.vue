@@ -20,7 +20,7 @@ import ShowPoster from '@/components/posters/ShowPoster.vue';
 
 
 export default {
-    name: 'poster',
+    name: 'posterdetails',
     components: {
         'show-poster': ShowPoster
     },

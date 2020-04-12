@@ -7,10 +7,10 @@ Global component responsible for rendering the global navigation of the applicat
 		<nav class='horizontal'>
 			<div class="spacer-1"></div>
 			<h1 class='large-text horizontal-center'>
-				<a href='#'>
+				<router-link :to='{ name: "posters" }'>
 					<span class='semibold'>Broad</span>
 					<span>poster</span>
-				</a>
+				</router-link>
 			</h1>
 		
 		</nav>

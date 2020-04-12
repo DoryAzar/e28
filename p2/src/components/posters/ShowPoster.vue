@@ -6,9 +6,9 @@ Poster component responsible for rendering the details of a poster
 <template>
 	<div id='poster' class='content-section bounded-xlarge'>
 		<div class='card color0 dropshadow horizontal-center'>
-			<div class='horizontal-left'>
-				<router-link :to="{ name: 'posters'}"><a class='btn btn-default btn-sm'>back</a></router-link>
-			</div>
+			<div class='inline-block horizontal-left'><router-link :to="{ name: 'posters'}"><a class='btn btn-default btn-sm'>back to posters</a></router-link></div>
+			<div class='inline-block horizontal-right'><router-link :to="{ name: 'manageposter'}"><a class='btn btn-primary btn-sm input-size-100 '>edit</a></router-link></div>	
+			<div class="spacer-2"></div>
 			<div class='banner-section color0 horizontal-center'>
 				<h2 class='sr-only hide'>post image</h2>
 				<img class='card-responsive' alt='Main image' :src='poster.image_url' />
