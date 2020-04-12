@@ -8,7 +8,7 @@ Poster component responsible for rendering a create or edit form
 
 <template>
 	<div id='posterform'>
-		<form method='POST' enctype='multipart/form-data' @submit.prevent=''>
+		<form id='poster_form' method='POST' enctype='multipart/form-data' @submit.prevent='savePoster'>
 			<div class='content-section bounded-xlarge equally-spaced-1 horizontal-center'>
 				<div class='card color0 dropshadow horizontal-center'>
 					<div class='spacer-2'></div>
@@ -16,12 +16,12 @@ Poster component responsible for rendering a create or edit form
 
 						<div class='form-group'>
 							<label for='title' class='textcolor5'>* title</label>
-							<input type='text' name='title' class='form-control input-default' placeholder='Enter the title' maxlength='18' v-model='poster.title' required>
+							<input type='text' name='title' id='title' class='form-control input-default' placeholder='Enter the title' maxlength='18' v-model='poster.title' required>
 						</div>
 
 						<div class='form-group'>
 							<label for='category' class='textcolor5'>* category</label>
-							<input type='text' name='category' class='form-control input-default' placeholder='Enter a category name' maxlength='50' v-model='poster.category' required>
+							<input type='text' name='category' id='category' class='form-control input-default' placeholder='Enter a category name' maxlength='50' v-model='poster.category' required>
 						</div>
 
 						<div class='form-group'>
@@ -67,9 +67,80 @@ Poster component responsible for rendering a create or edit form
 </template>
 
 <script>
+import * as app from '@/common/app.js';
+	
 export default {
     name: 'poster-form',
-    props: ['poster', 'edit']
+    props: ['poster', 'edit'],
+	data() {
+		return {
+			error: null,
+			apiRoute: app.config.apiRoute + 'posters/',
+			app: app
+		};
+	},
+	methods: {
+		
+      savePoster: function() {
+          var form = document.getElementById('poster_form');
+          var formData = new FormData(form);
+
+          
+          // For a creation, the POST request allows for sending data as form data
+          if (!this.edit) {
+              
+              // Get the input files
+              let files = document.getElementById('image_url'); 
+              formData.append('image_url', files.files[0]);
+              
+              // make the post request
+              this.app.callApi.post(this.route, formData, this.app.apiConfig)
+              .then(response => { 
+                  if(response.data.error) {
+                      this.error = response.data;
+                      if (this.error.status == 'danger') {
+                          this.error.alertType = 'exclamation-sign';
+                      }
+                  } else {
+                      this.$router.push({ name: 'posters'});
+                  }
+              })
+              .catch(error => (console.log(error)));
+            } else {
+                
+              // form data needs to be jsonified
+              var updateData = JSON.stringify(Object.fromEntries(formData));
+              this.app.callApi.put(this.apiRoute + this.poster.id, updateData, this.app.apiConfig)
+              .then(response => { 
+                  if(response.data.error) {
+                      this.error = response.data;
+                      if (this.error.status == 'danger') {
+                          this.error.alertType = 'exclamation-sign';
+                      }
+                  } else {
+                      this.$router.push({ name: 'posters'});
+                  }
+              })
+              .catch(error => (console.log(error)));  
+            }
+        }
+      
+        //deleteProject: function() {
+        //    if(!this.edit) {
+        //        window.location.href="/vue/";
+        //    } else {
+        //        var input = {
+        //                headers: {
+        //                    "Authorization": "Bearer NHlVZEN6Ri8vR3hXNEVKSTJhTWlIbTE3bFpzcE1KNkRFVmwzTTloMi9FWGRzRzlRZHBMZ3oybGgrVFlsaXpHNjo6s9CfKQ/uyC8ZMVPcqFrB1w=="
+        //                }
+        //          };
+        //        axios.delete(this.route, input)
+        //        .then(response => window.location.href="/vue/")
+        //        .catch(error => console.log(error));
+        //    }
+        //}
+		
+	}
 
 };
 </script>

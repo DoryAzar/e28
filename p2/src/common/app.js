@@ -22,7 +22,7 @@ export const apiConfig = {
 	headers: {
 		"Authorization": "Bearer " + config.apiKey,
 		'Content-Type': 'application/json',
-		 'Set-Cookie': 'widget_session=caligrafy_app; SameSite=None; Secure'
+		'Set-Cookie': 'widget_session=caligrafy_app; SameSite=None; Secure'
 	}
 	
 };

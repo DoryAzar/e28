@@ -35,7 +35,7 @@ export default {
 	mounted() {
 
 		// call a GET method to get one poster
-		app.callApi
+		this.app.callApi
 		.get(this.apiRoute + this.id, this.app.apiConfig)
 		.then(response => { 
 			this.poster = response.data?? null;  

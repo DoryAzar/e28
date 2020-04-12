@@ -51,7 +51,7 @@ export default {
 		
 		// call a GET method to get one poster
 		if (this.id) {
-			app.callApi
+			this.app.callApi
 			.get(this.apiRoute + this.id, this.app.apiConfig)
 			.then(response => { 
 				let temp = this.poster;
