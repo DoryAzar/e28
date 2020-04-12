@@ -5,6 +5,7 @@ Router page for rendering page errors
 Component Dependency:
 @show-error: component responsible for rendering an error within the page
 -->
+
 <template>
     <div id='error'>
         <show-error :error='error'></show-error>

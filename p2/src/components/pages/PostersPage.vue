@@ -5,6 +5,7 @@ Router page for rendering all posters
 Components Dependency
 @show-posters: component responsible rendering the posters
 -->
+
 <template>
     <div id='posters'>
         <show-posters v-for='poster in posters' :key='poster.id' :poster='poster'></show-posters>

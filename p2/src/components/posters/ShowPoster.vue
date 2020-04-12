@@ -2,6 +2,7 @@
 Poster component responsible for rendering the details of a poster
 @poster: Expects a poster object
 -->
+
 <template>
 	<div class='content-section bounded-xlarge'>
 		<div class='spacer-2'></div>

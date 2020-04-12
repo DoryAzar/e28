@@ -2,6 +2,7 @@
 Poster component responsible for rendering a snippet for a poster
 @poster: Expects a poster object
 -->
+
 <template>
 	<div class="col-sm-6 col-md-4">
 		<router-link :to="{ name: 'poster', params: { id: poster.id }}">

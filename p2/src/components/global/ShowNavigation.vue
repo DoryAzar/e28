@@ -1,6 +1,7 @@
 <!-- Show Navigation Component
 Global component responsible for rendering the global navigation of the application
 -->
+
 <template>
     <header class='color0'>
 		<nav class='horizontal'>

@@ -2,6 +2,7 @@
 Global component responsible for rendering an error message passed on to it on a page
 @error: Expects an error object that contains a message to be displayed
 -->
+
 <template>
 	<div class='wrapper content-section bounded equally-spaced-1'>
 		<div class='spacer-4'></div>

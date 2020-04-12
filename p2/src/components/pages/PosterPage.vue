@@ -6,6 +6,7 @@ Router page for rendering a poster
 Component Dependency:
 @show-poster: component responsible for rendering a poster
 -->
+
 <template>
     <div id='poster' v-if='poster'>
         <show-poster :poster='poster'></show-poster>
