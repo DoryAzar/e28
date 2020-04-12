@@ -9,6 +9,7 @@ Component Dependency:
 
 <template>
     <div id='poster' v-if='poster'>
+		<div class='spacer-2'></div>
         <show-poster :poster='poster'></show-poster>
     </div>
 </template>

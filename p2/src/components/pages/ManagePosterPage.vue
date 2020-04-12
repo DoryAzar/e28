@@ -11,6 +11,7 @@ Component Dependency:
 
 <template>
     <div id='manageform'>
+		<div class='spacer-1'></div>
         <poster-form :poster='poster' :edit='edit'></poster-form>
     </div>
 </template>

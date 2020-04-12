@@ -8,6 +8,7 @@ Components Dependency
 
 <template>
     <div id='posters'>
+		<div class='spacer-2'></div>
         <show-posters v-for='poster in posters' :key='poster.id' :poster='poster'></show-posters>
     </div>
 </template>

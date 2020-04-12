@@ -9,8 +9,9 @@ Poster component responsible for rendering a create or edit form
 <template>
 	<div id='posterform'>
 		<form method='POST' enctype='multipart/form-data' @submit.prevent=''>
-			<div class='wrapper bounded-xlarge equally-spaced-1 horizontal-center'>
-				<div class='card animated zoomIn color0 dropshadow horizontal-center'>
+			<div class='content-section bounded-xlarge equally-spaced-1 horizontal-center'>
+				<div class='card color0 dropshadow horizontal-center'>
+					<div class='spacer-2'></div>
 					<div class='horizontal-left'>
 
 						<div class='form-group'>

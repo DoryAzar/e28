@@ -4,8 +4,7 @@ Poster component responsible for rendering the details of a poster
 -->
 
 <template>
-	<div class='content-section bounded-xlarge'>
-		<div class='spacer-2'></div>
+	<div id='poster' class='content-section bounded-xlarge'>
 		<div class='card color0 dropshadow horizontal-center'>
 			<div class='horizontal-left'>
 				<router-link :to="{ name: 'posters'}"><a class='btn btn-default btn-sm'>back</a></router-link>
