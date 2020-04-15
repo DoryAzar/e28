@@ -11,8 +11,8 @@ Component Dependency:
 
 <template>
 	<div id='posterform'>
-		<form id='poster_form' method='POST' enctype='multipart/form-data' @submit.prevent='savePoster'>
-			<div class='content-section bounded-xlarge equally-spaced-1 horizontal-center'>
+		<div class='content-section bounded-xlarge equally-spaced-1 horizontal-center'>
+			<form id='poster_form' method='POST' enctype='multipart/form-data' @submit.prevent='savePoster'>
 				<div class='card color0 dropshadow horizontal-center'>
 					<div class='horizontal-left'>
 						<router-link v-if='edit' :to="{ name: 'poster'}"><a class='btn btn-default btn-sm'>back to poster</a></router-link>
@@ -65,16 +65,14 @@ Component Dependency:
 						<div class='spacer-2'></div>
 					</div>
 				</div>
-			</div>
-		</form>
-
-		<form v-if='edit' id='delete_form' method='POST' enctype='multipart/form-data' @submit.prevent='deletePoster'>
-			<input class='btn btn-lnk btn-md btn-block' type='submit' value='delete poster'>
-		</form>
-
-		<div class='spacer-2'></div>
-
-	
+			</form>
+			
+			<form v-if='edit' id='delete_form' method='POST' enctype='multipart/form-data' @submit.prevent='deletePoster'>
+				<input class='btn btn-lnk btn-md btn-block' type='submit' value='delete poster'>
+			</form>
+			<div class='spacer-2'></div>
+			
+		</div>	
 	</div>
 
 </template>
