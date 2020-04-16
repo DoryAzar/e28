@@ -19,9 +19,6 @@ const routes = [
 	{ path: '/create', component: ManagePosterPage, name: 'newposter'},
 	{ path: '/:id/edit', component: ManagePosterPage, name: 'manageposter'},
 	{ path: '/:id', component: PosterPage, name: 'poster', props: true}
-	//{ path: '/other', component: PostersPage, name: 'other' }, // adding name makes it easy to reference later
-	//{ path: '/dynamic/:id', component: App, name: 'dynamic'},  // Loading dynamic params read from $route
-	//{ path: '/dynamic/:id', component: App, name: 'dynamic', props: true}  // Loading dynamic params into props of component directly
 ];
 
 // initialize the router

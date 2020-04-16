@@ -42,3 +42,10 @@ Broadposter allows users to share stories, memories, articles or just any piece 
 + Caligrafy full-stack framework: Proprietary PHP framework used for creating the REST-ful API. This framework is being developed throughout my journey at Harvard Extension and will be the main topic of my capstone project.
 
 [Discover Caligrafy](https://github.com/DoryAzar/caligrafy)
+
++ [Bootstrap 3.3.x](https://getbootstrap.com/docs/3.3/)
+
++ Axios documentation: [Vue cookbook](https://vuejs.org/v2/cookbook/using-axios-to-consume-apis.html)
+
++ VueJS favicon - From the official VueJS asset library
+
