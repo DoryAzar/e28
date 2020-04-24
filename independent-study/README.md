@@ -248,17 +248,397 @@ var app = new Vue({
 
 ## Let's have some fun
 
+The best way to explore the powerful features of the FaceDetect framework is to use them in actual examples. As part of this study, we will show you how you could make use of the framework to quickly create face detection and recognition applications.
+
+<br />
+
+> In every `app` that we will create, we recommend that you duplicate the `app_template` folder provided, renaming it and adjusting the HTML markup as well as the Vue script when needed. 
+
+<br />
+
+In all of the app examples, we will be detecting and/or recognizing faces from a webcam stream. Therefore, the HTML Markup will always be the same:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="content-type", content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width initial-scale=1 maximum-scale=1">
+        <meta name='apple-mobile-web-app-capable' content='yes'>
+        <meta name='apple-mobile-web-app-status-bar-style' content='black'>
+        <title>Face Detect</title>
+
+        <!-- Stylesheet and head scripts go here -->
+        <link rel="stylesheet" href="../../facedetect/css/styles.css">
+		
+		<!-- Initialization scripts -->
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js" defer></script>
+        <script src="../../facedetect/scripts/face-api.min.js" defer></script>
+        <script src="../../facedetect/scripts/detect.js" defer></script>
+		<script src="scripts/main.js" defer></script>
+
+    </head>
+
+
+    <body>
+        <!-- Beginning of the app -->
+        <div id="app">
+            <header>
+                <h1>Face Detect</h1>
+            </header>
+            <section id="infobar"></section>
+            <section id="detector">
+                
+                <!-- media can be a webcam -->
+                <video id="detection" width="720" height="560" class="show" autoplay="autoplay" muted playsinline></video>
+                
+            </section>
+
+            <section class="controls">
+                <div id="apps"></div>
+            </section>
+        </div>
+      
+    </body>
+
+</html>
+
+```
+
+<br />
 
 ### App 1: Simple Face Detection
 
+The first `app` we are going to create is a simple face detection application that detects all faces from a webcam stream. As much as this sounds complex, with the FaceDetect framework it can actually be done in one line of code in the Vue `main.js` script.
+
+
+```js
+
+var detector = new FaceDetector('detection');
+
+var app = new Vue({
+  el: '#app',
+  data () {
+    return {
+        detector: detector
+
+    }
+  },
+  /* upon object load, the following will be executed */
+  mounted () {
+      
+      // Load general detection
+      this.detector.loadApp();
+      
+  }
+
+});
+
+
+```
+
+<br />
+
+> The code for this app is in the `app` > `example1` folder of this package
+
+<br />
 
 ### App 2: Profile Faces
 
+In the first application, all we did is load the default sandbox of the FaceDetect framework. All the default sandbox does is detect the faces. For this second application, we would like to detect more features of the detected faces (such as gender for example). The trained models that FaceDetect uses can detect: age, gender and 5 emotions (sad, happy, surprised, angry and neutral).
+
+In order to do that, FaceDetect provides a way to activate/deactivate certain properties of the engine and pass them in a JSON format to the framework. Some of these properties are mandatory.
+
+```js
+{
+  name: 'Full Detection', // MANDATORY: UI button label that triggers the detection
+	
+  method: this.detector.draw, // MANDATORY: FaceDetect method that will draw the different detections on top of the detected faces
+	
+  options: {
+	
+	   welcome: "Detect faces, genders, ages and expressions", // OPTIONAL: Message that will be displayed in the infobar of the UI
+	
+	   detection: true, // OPTIONAL: Draws the rectangle around the detected faces
+	
+	   landmarks: true, // OPTIONAL: Draws the contour of the detected faces
+	
+	   gender: true, // OPTIONAL: Displays the gender of the detected faces
+	
+	   expression: true, // OPTIONAL: Displays the detected emotion of the detected faces
+	
+	   age: true // OPTIONAL: Displays the age of the detected faces
+  }
+}
+```
+
+The Vue script would then consist of calling the FaceDetect `loadApp` method just like we did in the first example and passing the JSON as an argument to it. 
+
+```js
+
+var detector = new FaceDetector('detection');
+
+var app = new Vue({
+  el: '#app',
+  data () {
+    return {
+        detector: detector
+
+    }
+  },
+  /* upon object load, the following will be executed */
+  mounted () {
+      
+	  // Passing the settings to the loadApp method
+	  this.detector.loadApp({
+		  name: 'Full Detection',
+		  method: this.detector.draw,
+		  options: {
+			  welcome: "Detect faces, genders, ages and expressions",
+			  detection: true,
+			  landmarks: true,
+			  gender: true,
+			  expression: true,
+			  age: true
+		  }
+	  });
+      
+  }
+
+});
+
+```
+
+<br />
+
+> The code for this app is in the `app` > `example2` folder of this package
+
+<br />
 
 ### App 3: Recognize me
 
+In all the applications that we created thus far, we have only been detecting faces. In this third example, we are going to create an example that not just detects faces in the webcam, but also recognizes specific faces among the ones detected.
+
+<br />
+
+> If you need to understand better the distinction between Detection and Recognition, make sure you read [this section](https://github.com/DoryAzar/facedetect#understanding-face-detection-and-recognition)
+
+<br />
+
+In order to do this, we need to create models of the people that we would want to recognize. Models are nothing more but face pictures of those people in different angles and perspectives. The more samples we have, the more accurate the recognition. We then need to tell FaceDetect to compare the detections to these models and identify the faces that it recognizes directly on top of the video.
+
+
+**Step 1: Define the recognition models**
+
+The easiest way to define a recognition model is to create a folder for each person containing many pictures of that person. Each person to be recognized will have a folder in their name and the pictures inside **must be PNGs and must be named with a number**.
+That folder needs to be placed in `facedetect` > `recognition` > `<name of person>`. 
+
+<br />
+
+> As an example, there is a model already defined in the package to recognize the superhero Flash. If you navigate to the `facedetect` > `recognition` folder, you will find a `Flash` folder containing 6 different PNGs of the Flash numbered 1 to 6.
+
+<br />
+
++ Go ahead and create a folder in `facedetect` > `recognition` that has your firstname. Keep the `Flash` folder, we will use it for testing
+
++ In this new folder, add 6 PNG images of you from different angles 
+
++ Make sure that the PNGs are named 1.PNG, 2.PNG etc...
+
+
+<br />
+
+
+**Step 2: Run recognition**
+
+Running the recognition is as easy as loading a detection app with 3 specific parameters: the `method`,  `models` and `recognition` parameters.
+
+```js
+
+<!-- Vue example -->
+this.detector.loadApp({
+    name: "Find me", // MANDATORY: UI button label that triggers the recognition
+					   
+    method: this.detector.recognize, // MANDATORY: FaceDetect method that will call the recognition engine
+					   
+    models: {
+	
+         labels: ['Flash', 'Your Name'], // MANDATORY: Make sure to respect the case. Array of all the names of the people which are also the names of the folders in the structure. 
+			 
+         sampleSize: 6 // number of pictures per person (this number must be the same for all)
+    },
+    options: {
+        welcome: "Can you find me?", // OPTIONAL: This is the message that will be displayed in the infobar
+			  
+        recognition: true // the recognition engine needs to be activated
+    },
+    algorithm: faceapi.SsdMobilenetv1Options // OPTIONAL: The detection algorithm that will be used
+});
+
+```
+
+Go ahead and test out the application. If you took pictures of yourself, once you stand in front of the webcam, the system will be able to identify you and to show your name (which also is the folder name) around your face. For more fun, you can also have the Flash image on your phone and place it in front of your computer webcam (where the application is running). The system will be able to identify and distinguish both you and the Flash.
+
+For any other face that it detects and that does not have a model, it will display an "unknown" label around them.
+
+
+<br />
+
+> The code for this app is in the `app` > `example3` folder of this package
+
+<br />
+
 
 ### App 4: Custom App
+
+In the examples thus far, we used the FaceDetect sandboxed features and we were able to do face detection and face recognition by simply manipulating some control settings. In this part, we are going to shed light on how we could leverage the FaceDetect framework to do whatever we want with the detections and the recognitions that its engine provides.
+
+In order to do that, we need to create either a detection or a recognition `app` that tells FaceDetect to just provide us with the data and our application handles all the rest. Let's imagine that we want to create an application that counts the number of men and women that it sees in the webcam and displays them in the UI.
+
+<br />
+
+**Step 1: Load FaceDetect detection**
+
+Similarly to what we have seen in the other examples, this example also needs to initiate the detections. However, unlike the other examples, we are not looking to draw rectangles or display specific face information around the detected faces. What we need is for FaceDetect to allow us to hook into every detection cycle and execute our own logic.
+
+In order to do that, we need to pass our own callback method to the app settings. Let's assume that our method will be called `countGender`.
+
+```js
+
+// In the Vue script
+mounted () {
+
+  this.detector.loadApp({
+	  name: "Count Gender", // name of the trigger button in the UI
+	  method: this.countGender, // assuming our method is called countGender
+	  options: {
+		  detection: true
+	  }
+
+  });
+}
+
+```
+<br />
+
+**Step 2: Prepare the custom method**
+
+The second step is to create a custom Vue method `countGender` that goes through the detections and increments the count of men or women based on the faces information that it detects. This example is mainly meant to illustrate how we can have access to the detections and in what format FaceDetect provides them to us. 
+
+FaceDetect enables us to have access to the entire set of properties of the FaceDetect instance through the custom method by making us define a name for that instance that will be passed as an argument to the custom method. Therefore, the `countGender` method needs to take at least one argument and that argument should be the reference to the FaceDetect object which could easily give us access to the detections as shown in the code below.
+
+```js
+
+methods: {
+	
+  countGender: function(facedetector) {	  
+
+	  // facedetector will reference the FaceDetect object
+									   
+	  // facedetector.app.detections will provide an array of all the detected faces every cycle of detection (100ms by default)	   
+	  console.log(facedetector.app.detections);
+  }
+}
+
+```
+<br />
+
+> It would be instructive to log the facedetector.app.detections as suggested in the code above to see the complete list of properties that FaceDetect returns for each detection. Here are some: gender, expressions, age etc...
+
+<br />
+
+**Step 3: Iterate through the detections**
+
+With the method defined, we can now create the logic that allows us to iterate through the detections. For each detection, we need to check the `gender` property in each detection object model and increment either men or women counts. 
+
+```js
+var detector = new FaceDetector('detection');
+
+var app = new Vue({
+  el: '#app',
+  data () {
+    return {
+        detector: detector,
+		femaleCount: 0,
+		maleCount: 0
+
+    }
+  },
+  methods: {
+	
+	  
+	  countGender: function(facedetector) {	  
+		  
+		  // reset the counts every time the method is called
+		  this.femaleCount = 0;
+		  this.maleCount = 0;
+		
+		  
+		  // iterate through the detections and count the number of men and women
+		  facedetector.app.detections.forEach((detection) => {
+			  	  if (detection.gender == 'male') {
+					  this.maleCount++;
+				  } else {
+					  this.femaleCount++;
+				  }
+		  });
+      }
+  },
+  /* upon object load, the following will be executed */
+  mounted () {
+      
+      this.detector.loadApp({
+          name: "Count Gender",
+          method: this.countGender,
+          options: {
+              detection: true
+          }
+          
+      });
+  }
+
+});
+
+```
+
+<br />
+
+**Step 4: Display the counts in the HTML markup**
+
+The last step is really to display the counts in the HTML markup. This is nothing more but using Vue interpolation to display the 2 variables `maleCount` and `femaleCount`. In this case, we chose to adhere to the default styles provided by the FaceDetect CSS but any HTML structure and styling could be applied.
+
+```html
+
+<body>
+	<!-- Beginning of the app -->
+	<div id="app">
+		<header>
+			<h1>Face Detect</h1>
+		</header>
+
+		<section id="infobar"><ul><li>men: {{ maleCount }}</li><li>women: {{ femaleCount }}</li></ul></section>
+		<section id="detector">
+
+			<!-- media can be a webcam -->
+			<video id="detection" width="720" height="560" class="show" autoplay="autoplay" muted playsinline></video>
+
+		</section>
+
+		<section class="controls">
+			<div id="apps"></div>
+		</section>
+	</div>
+
+</body>
+
+```
+
+<br />
+
+> The code for this app is in the `app` > `example4` folder of this package
+
+<br />
+
 
 
 ## Final Thoughts
@@ -271,11 +651,83 @@ The framework is flexible to accommodate the needs of developers of all levels. 
 
 ### Hooks
 
+In example 4, we have seen one type of hook that allows us to inject a piece of logic (through a custom method) that gets executed at every detection or recognition cycle.
+
+There is another type of hook that instructs FaceDetect to execute a piece of code **before** detections or recognitions start. Basically, it forces the FaceDetect features to be called and controlled by developers. This is a way to give the ability for the developer to take control over the framework methods and properties.
+
+In order to get into this mode, a FaceDetect app needs to be loaded with a `custom` set to true. Doing so, will transfer execution to the `callbackMethod` and any other FaceDetect feature needs to be called explicitly from within it.
+
+```js
+    this.loadApp({
+          name: "Custom callback",
+          method: this.callbackMethod,
+          custom: true, // set to true if you want the method to do something else before calling in FaceDetect features
+          options: {
+              detection: true
+          }
+          
+      });
+
+```
+
+<br />
+
 
 ### FaceDetect Features
 
+In order to create custom applications, FaceDetect provides 2 different types of hooks. One that we have seen in example 4 and another one that we just explained in the previous section. In both these modes, the program execution is passed on to a callback method. In that callback method, all the FaceDetect features can be leveraged to create powerful applications. 
+
+Here is the list of all the methods and properties that FaceDetect provides:
+
+```js
+
+// PROPERTIES
+
+facedetector.app // Everything about the app: name, options, detections, recognitions, canvas
+
+facedetector.app.options // All the options defined in the app
+
+facedetector.app.canvas // All the properties of the canvas that is created on top of the media source 
+
+facedetector.app.detections // Detections when the detection engine is running
+
+facedetector.app.recognitions // Recognitions when the recognition engine is running
+
+
+// METHODS
+
+facedetector.loadApp(app); // load another app
+
+(facedetector.detectFaces(app, facedetector))() // self invoking function to start face detection
+
+facedetector.detect(callback, recognize = false, fetchRate = 100) // starts a parallel stream that captures any detections or recognitions when available
+
+facedetector.prepareCanva(options = null) // returns a new canvas on top of the media source
+
+facedetector.draw(facedetector) // draws the detections on the canvas
+
+facedetector.loadRecognition({ labels: [], images: [], sampleSize: 6}) // load models to recognize by the recognition engine
+
+facedetector.recognize(facedetector) // runs the recognition engine and draws on canvas. Must make sure that detections is started before
+
+facedetector.fetchImage(canvas, media) // takes a canvas capture of the media and returns a blob data image (data url)
+
+facedetector.display(message, output) // displays a message in the infobar and gives it an ID as specified by the 'output' input
+
+facedetector.clearDisplay() // clears the infobar display
+
+
+```
+
+<br />
 
 ## Known Issues
+
++ FaceDetect works on Chrome, Safari and FireFox from the local machine
+
++ In production, some browsers (Safari) require a secure SSL connection (https) for webcam streaming
+
++ "Puppeteer" (the line drawing feature) is not compatible with Safari
 
 
 
