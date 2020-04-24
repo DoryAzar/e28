@@ -421,7 +421,7 @@ In all the applications that we created thus far, we have only been detecting fa
 
 <br />
 
-> If you need to understand better the distinction between Detection and Recognition, make sure you read [this section](https://github.com/DoryAzar/facedetect#understanding-face-detection-and-recognition)
+> If you need to understand better the distinction between Detection and Recognition, make sure you read [this section](https://github.com/DoryAzar/e28/tree/master/independent-study#understanding-face-detection-and-recognition)
 
 <br />
 
@@ -557,11 +557,10 @@ var detector = new FaceDetector('detection');
 var app = new Vue({
   el: '#app',
   data () {
-    return {
-        detector: detector,
-		femaleCount: 0,
-		maleCount: 0
-
+	return {
+			detector: detector,
+			femaleCount: 0,
+			maleCount: 0
     }
   },
   methods: {
