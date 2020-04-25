@@ -31,8 +31,7 @@ export default {
 		};
 	},
 	computed: {
-		...mapState(['poster']),
-		...mapState(['edit'])
+		...mapState(['poster', 'edit'])
 	},
 	mounted() {
 		
