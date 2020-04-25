@@ -9,7 +9,7 @@ let axios = require('axios');
 
 // API configuration of the PHP back-end that was created for this course
 export const config = {
-	apiKey: 'cXlEaHR1NHY4YXlNNjZYL2pyUmJ4NW5GdGtoNmtLalpORk5NR3lPdktFNjJ2eWR0aCtOd3pBelNsWWdrYjZIWDo6S22kiniYO9V1WZThcqtxbw==',
+	apiKey: process.env.VUE_APP_API_KEY,
 	apiRoute: 'http://broadposter.com/api/'
 	
 };
