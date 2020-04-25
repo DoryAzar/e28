@@ -18,9 +18,8 @@ Components Dependency
 </template>
 
 <script>
-import * as app from '@/common/app.js';
 import ShowPosters from '@/components/posters/ShowPosters.vue';
-
+import {mapState} from 'vuex'
 
 export default {
     name: 'posters',
@@ -28,20 +27,14 @@ export default {
         'show-posters': ShowPosters
     },
 	data() {
-		return {
-			posters: [],
-			apiRoute: app.config.apiRoute + 'posters',
-			app: app
-		};
+		return {}
 	},
+	computed: {
+		...mapState(['posters'])
+	},
+	
 	mounted() {
-		
-		// call a GET method to get all posters
-		this.app.callApi
-		.get(this.apiRoute, this.app.apiConfig)
-		.then(response => { 
-			this.posters = response.data;  
-		});
+		this.$store.dispatch('getPosters');
 	}
 };
 </script>

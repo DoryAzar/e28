@@ -1,12 +1,15 @@
-import Vue from 'vue';
-import App from '@/App.vue';
-import VueRouter from 'vue-router';
+import Vue from 'vue'
+import App from '@/App.vue'
+import VueRouter from 'vue-router'
 
 // Import Page Components
-import PostersPage from '@/components/pages/PostersPage.vue';
-import PosterPage from '@/components/pages/PosterPage.vue';
-import ManagePosterPage from '@/components/pages/ManagePosterPage.vue';
-import ErrorPage from '@/components/pages/ErrorPage.vue';
+import PostersPage from '@/components/pages/PostersPage.vue'
+import PosterPage from '@/components/pages/PosterPage.vue'
+import ManagePosterPage from '@/components/pages/ManagePosterPage.vue'
+import ErrorPage from '@/components/pages/ErrorPage.vue'
+
+// import Store State Management
+import store from '@/common/store'
 
 Vue.use(VueRouter);
 
@@ -30,8 +33,9 @@ const router = new VueRouter({
 
 // Instantiate the vue instance
 new Vue({
-  router: router,
-  render: h => h(App),
+	store: store, 
+	router: router,
+	render: h => h(App),
 }).$mount('#app')
 
 

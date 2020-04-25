@@ -7,6 +7,12 @@
 Broadposter allows users to share stories, memories, articles or just any piece of information with the community.
 
 
+## State Management
++ A Store has been used to reduce the server calls that attempt to retrieve data. Fetching a collection of posts or a single post are used by several components. It was therefore a logical choice to make sure to optimize that by using Store actions to asynchronously make api calls. A Special logic has been added to retrieve data from the store using a getter when it's available. Otherwise, a server call is made to attempt to find the requested data.
+
++ An "edit" state is used in order to track if a form is in editing or creation modes. Broadposter uses one form for both creation and editing, thus the need to identify in which mode a form is throughout the life of the session.
+
+
 ## Pages summary
 + Posters Page: page displaying all the posters
 + Poster Page: page displaying details of a specific poster

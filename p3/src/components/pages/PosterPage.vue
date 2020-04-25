@@ -15,9 +15,8 @@ Component Dependency:
 </template>
 
 <script>
-import * as app from '@/common/app.js';
-import ShowPoster from '@/components/posters/ShowPoster.vue';
-
+import ShowPoster from '@/components/posters/ShowPoster.vue'
+import {mapState} from 'vuex'
 
 export default {
     name: 'posterdetails',
@@ -26,25 +25,27 @@ export default {
     },
 	props: ['id'],
 	data() {
-		return {
-			poster: null,
-			apiRoute: app.config.apiRoute + 'posters/',
-			app: app
-		};
+		return {};
+	},
+	computed: {
+		...mapState(['poster'])
 	},
 	mounted() {
+		
+		this.$store.dispatch('getPoster', this.id);
 
-		// call a GET method to get one poster
-		this.app.callApi
-		.get(this.apiRoute + this.id, this.app.apiConfig)
-		.then(response => { 
-			this.poster = response.data?? null;  
-			
-			// in the absence of a poster, redirects to error page
+	},
+	
+	watch: {
+		
+		// Watch poster for results. In the absence of one, display message
+		poster() {
 			if (!this.poster) {
 				this.$router.push({ name: 'error', params: { 'message': 'The poster is not available'}});
 			}
-		});
+		}
+		
+		
 	}
 };
 </script>
