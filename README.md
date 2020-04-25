@@ -33,5 +33,4 @@ Broadposter allows users to share stories, memories, articles or just any piece 
 
 As part of this study, we were tasked to research a topic of our own choosing and write a set of notes relevant to that topic.
 - The git repository can be found [here](https://github.com/DoryAzar/e28/tree/master/independent-study)
-- **in progress**
 
