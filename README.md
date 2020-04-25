@@ -28,9 +28,12 @@ Broadposter allows users to share stories, memories, articles or just any piece 
 - The Broadposter git repository can be found [here](https://github.com/DoryAzar/e28/tree/master/p2)
 - The Broadposter application can be run [here](http://e28p2.broadposter.com)
 
-
 ## Independent Study: Face Detect - Face detection and recognition framework
 
 As part of this study, we were tasked to research a topic of our own choosing and write a set of notes relevant to that topic.
 - The git repository can be found [here](https://github.com/DoryAzar/e28/tree/master/independent-study)
 
+## Project 3: Broadposter
+
+As part of this project, we were tasked to expand upon the application created in project 2 to include State Management and Unit Testing.
+- **in progress**
