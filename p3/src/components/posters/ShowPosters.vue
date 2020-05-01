@@ -23,9 +23,9 @@ Poster component responsible for rendering a snippet for a poster
 </template>
 
 <script>
+
 export default {
     name: 'show-posters',
     props: ['poster']
-
 };
 </script>

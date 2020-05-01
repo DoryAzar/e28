@@ -8,10 +8,15 @@ import PosterPage from '@/components/pages/PosterPage.vue'
 import ManagePosterPage from '@/components/pages/ManagePosterPage.vue'
 import ErrorPage from '@/components/pages/ErrorPage.vue'
 
-// import Store State Management
+// Import Store State Management
 import store from '@/common/store'
 
+// Import Vuelidate for client validation
+import Vuelidate from 'vuelidate'
+
+// Register third party components
 Vue.use(VueRouter);
+Vue.use(Vuelidate);
 
 Vue.config.productionTip = false
 

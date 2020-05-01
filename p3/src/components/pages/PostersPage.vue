@@ -30,6 +30,7 @@ export default {
 		return {}
 	},
 	computed: {
+		// component reads needed information directly from store
 		...mapState(['posters'])
 	},
 	

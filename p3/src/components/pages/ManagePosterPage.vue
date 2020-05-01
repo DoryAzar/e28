@@ -12,7 +12,7 @@ Component Dependency:
 <template>
     <div id='manageform'>
 		<div class='spacer-1'></div>
-        <poster-form :poster='poster' :edit='edit'></poster-form>
+        <poster-form></poster-form>
     </div>
 </template>
 
@@ -31,6 +31,8 @@ export default {
 		};
 	},
 	computed: {
+		
+		// component reads needed information directly from store
 		...mapState(['poster', 'edit'])
 	},
 	mounted() {

@@ -29,9 +29,13 @@ Poster component responsible for rendering the details of a poster
 </template>
 
 <script>
+import {mapState} from 'vuex'
+	
 export default {
     name: 'show-poster',
-    props: ['poster']
+	computed: {
+		...mapState(['poster'])
+	}
 
 };
 </script>
