@@ -10,7 +10,7 @@ let axios = require('axios');
 // API configuration of the PHP back-end that was created for this course
 export const config = {
 	apiKey: process.env.VUE_APP_API_KEY,
-	apiRoute: 'http://broadposter.com/api/'
+	apiRoute: 'https://server.caligrafy.com/api/'
 	
 };
 
