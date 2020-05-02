@@ -1,6 +1,7 @@
 # Project 3 - Broadposter: share your stories with the world
 + By: *Dory Azar*
-+ Production URL: <http://p3.broadposter.com>
++ Secure Netlify Production: <https://p3.broadposter.com>
++ Non-Secure Digital Ocean Production (using a different database): <http://e28p3.broadposter.com>
 
 ## Description
 
