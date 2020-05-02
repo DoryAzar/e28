@@ -15,9 +15,9 @@ Broadposter allows users to share stories, memories, articles or just any piece 
 ## Validations
 
 2 types of validations have been used:
-+ Client validations: Vuelidate has been used for client side validation on the inputs that are handled by a `v-model`. File inputs have been ommitted from the client side validation
++ Client validations: Vuelidate has been used for client side validation on the inputs that are handled by a `v-model`. For File inputs, custom validators have been created to validate availability of the file.
 
-+ Server validations: All inputs are also validated on the server side. Server validations return the status along with the appropriate messages that need to be displayed. The Client makes sure to handle how to display error messages 
++ Server validations: All inputs are also validated on the server side. Server validations return the status along with the appropriate messages that need to be displayed. The Client makes sure to handle how to display error messages as well.
 
 ## Pages summary
 + Posters Page: page displaying all the posters
