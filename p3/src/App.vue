@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import ShowNavigation from '@/components/global/ShowNavigation';
+import ShowNavigation from '@/components/global/ShowNavigation'
 	
 export default {
 	name: 'App',

@@ -18,7 +18,7 @@ Components Dependency
 </template>
 
 <script>
-import ShowPosters from '@/components/posters/ShowPosters.vue';
+import ShowPosters from '@/components/posters/ShowPosters.vue'
 import {mapState} from 'vuex'
 
 export default {

@@ -13,7 +13,7 @@ Component Dependency:
 </template>
 
 <script>
-import ShowError from '@/components/global/ShowError.vue';
+import ShowError from '@/components/global/ShowError.vue'
 
 export default {
     name: 'error',
