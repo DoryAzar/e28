@@ -1,6 +1,6 @@
 # Project 3 - Broadposter: share your stories with the world
 + By: *Dory Azar*
-+ Production URL: <http://e28p3.broadposter.com>
++ Production URL: <http://p3.broadposter.com>
 
 ## Description
 
