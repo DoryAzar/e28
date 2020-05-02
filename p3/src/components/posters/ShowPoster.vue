@@ -19,7 +19,7 @@ Poster component responsible for rendering the details of a poster
 				<div class="small-text textcolor3">{{ poster.category }}</div>
 				<div class="spacer-1"></div>
 				<div class="wrapper reset-margin">
-					<p class="textcolor5 default-text block-with-text">{{ poster.description }}</p>
+					<p class="textcolor5 default-text block-with-text" data-test='description-test'>{{ poster.description }}</p>
 				</div>
 				<div class="small-text textcolor3">{{ poster.modified_at }}</div>
 			</div>

@@ -6,7 +6,7 @@ Poster component responsible for rendering a snippet for a poster
 <template>
 	<div id='posters' class="col-sm-6 col-md-4">
 		<router-link :to="{ name: 'poster', params: { id: poster.id }}">
-			<div class="card color0 equally-spaced-1 height-fixed dropshadow">
+			<div class="card color0 equally-spaced-1 height-fixed dropshadow" data-test='poster-test'>
 				<div class="card-image" :style="'background-image: url(' + poster.image_url +')'"></div>
 				<div class="spacer-2"></div>
 				<h2 class="medium-text semibold textcolor5 reset-margin">{{ poster.title }}</h2>
