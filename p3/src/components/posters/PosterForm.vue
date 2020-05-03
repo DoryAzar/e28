@@ -104,13 +104,13 @@ Component Dependency:
 
 						<div class='spacer-2'></div>
 						<p v-if='$v.$anyError || error' class='horizontal-center small-text error'>Make sure to fix the errors on the page</p>
-						<input class='btn btn-primary btn-md btn-block'  type='submit' value='save' :disabled='$v.$anyError'>
+						<input class='btn btn-primary btn-md btn-block'  type='submit' value='save' :disabled='$v.$anyError' data-test='save-button'>
 						<div class='spacer-2'></div>
 					</div>
 				</div>
 			</form>
 			
-			<form v-if='edit' id='delete_form' method='POST' enctype='multipart/form-data' @submit.prevent='deletePoster'>
+			<form v-if='edit' id='delete_form' method='POST' enctype='multipart/form-data' @submit.prevent='deletePoster' data-test='delete-button'>
 				<input class='btn btn-lnk btn-md btn-block' type='submit' value='delete poster'>
 			</form>
 			<div class='spacer-2'></div>

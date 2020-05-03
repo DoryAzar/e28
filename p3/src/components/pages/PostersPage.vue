@@ -10,7 +10,7 @@ Components Dependency
     <div id='posters'>
 		<div class='spacer-2'></div>
 		<div class='horizontal-center'>
-			<router-link :to="{ name: 'newposter'}"><a class='btn btn-primary btn-md input-size-150'>Share your story</a></router-link>
+			<router-link :to="{ name: 'newposter'}"><a class='btn btn-primary btn-md input-size-150' data-test='new-button'>Share your story</a></router-link>
 		</div>
 		<div class='spacer-2'></div>
         <show-posters v-for='poster in posters' :key='poster.id' :poster='poster'></show-posters>

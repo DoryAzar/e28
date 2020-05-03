@@ -62,3 +62,5 @@ Broadposter allows users to share stories, memories, articles or just any piece 
 
 + VueJS favicon - From the official VueJS asset library
 
++ Code for [uploading a file in cypress](https://github.com/abramenal/cypress-file-upload/issues/15)
+
