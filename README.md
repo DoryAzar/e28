@@ -36,4 +36,5 @@ As part of this study, we were tasked to research a topic of our own choosing an
 ## Project 3: Broadposter
 
 As part of this project, we were tasked to expand upon the application created in project 2 to include State Management and Unit Testing.
-- **in progress**
+- The git repository can be found [here](https://github.com/DoryAzar/e28/tree/master/p3)
+- The Broadposter application can be run [here](https://p3.broadposter.com)

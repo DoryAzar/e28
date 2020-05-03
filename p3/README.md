@@ -13,12 +13,27 @@ Broadposter allows users to share stories, memories, articles or just any piece 
 
 + An "edit" state is used in order to track if a form is in editing or creation modes. Broadposter uses one form for both creation and editing, thus the need to identify in which mode a form is throughout the life of the session.
 
+
 ## Validations
 
 2 types of validations have been used:
 + Client validations: Vuelidate has been used for client side validation on the inputs that are handled by a `v-model`. For File inputs, custom validators have been created to validate availability of the file.
 
 + Server validations: All inputs are also validated on the server side. Server validations return the status along with the appropriate messages that need to be displayed. The Client makes sure to handle how to display error messages as well.
+
+## Testing
+
+### Unit Testing: 2 unit tests have been created:
++ ShowPoster.spec.js: tests the show poster component that shows the details about a poster
++ ShowPosters.spec.js: tests the the show posters component that snippets of all the posters
+	
+### E2E Testing: All features have been validated
++ View all posters
++ View details of a poster
++ Create a poster
++ Update a poster
++ Delete a poster
+
 
 ## Pages summary
 + Posters Page: page displaying all the posters
