@@ -7,7 +7,7 @@ describe('Broadposter', () => {
 	
 	// Create a dummy poster
 	let poster = {
-			title: 'xxxTESTxxx ' ,
+			title: 'xxxTESTxxx' ,
 			category: 'testing',
 			short_description: 'short description test',
 			description: 'long description'
@@ -28,56 +28,50 @@ describe('Broadposter', () => {
 	
 	/* TEST CASE 2: CREATE POSTERS
 	 * Visit the posters page
-	 * Clicks on the share story button
+	 * Click on the new button
 	 * Fill the form 
 	 * Click on save
-	 * Repeat to create 2 posters
 	 */
 	
 	it('Create posters', () => {
-		
-		
-		// do it 2 times
-		for(i=0; i< 2; i++) {
 			
-			// visit the posters page
-			cy.visit('/')
-			
-			// Clicks on the share story button to create a new poster
-			cy.get('[data-test="new-button"]').click()
-			
-			// fill the form: we use ids given that they are stable
-			cy.get('#title').type(poster.title + i)
-			cy.get('#category').type(poster.category)
-			cy.get('#short_description').type(poster.short_description)
-			cy.get('#description').type(poster.description)
+		// visit the posters page
+		cy.visit('/')
+
+		// Clicks on the share story button to create a new poster
+		cy.get('[data-test="new-button"]').click()
+
+		// fill the form: we use ids given that they are stable
+		cy.get('#title').type(poster.title)
+		cy.get('#category').type(poster.category)
+		cy.get('#short_description').type(poster.short_description)
+		cy.get('#description').type(poster.description)
 
 
-			// Upload a file
-			cy.fixture('../resources/test_image.jpg', 'base64').then(testImage => {
-				cy.get('input[type=file]').then(el => {
-					const type='image/jpg'
+		// Upload a file
+		cy.fixture('../resources/test_image.jpg', 'base64').then(testImage => {
+			cy.get('input[type=file]').then(el => {
+				const type='image/jpg'
 
-					// Blob the uploaded file
-					Cypress.Blob.base64StringToBlob(testImage, type).then(blob => {
+				// Blob the uploaded file
+				Cypress.Blob.base64StringToBlob(testImage, type).then(blob => {
 
-						// create a file out of the blob
-						const testFile = new File([blob], '../resources/test_image.jpg', {type: type})
-						const dataTransfer = new DataTransfer()
-						dataTransfer.items.add(testFile)
-						el[0].files = dataTransfer.files
-					})
-
+					// create a file out of the blob
+					const testFile = new File([blob], '../resources/test_image.jpg', {type: type})
+					const dataTransfer = new DataTransfer()
+					dataTransfer.items.add(testFile)
+					el[0].files = dataTransfer.files
 				})
 
 			})
-			
-			// click save
-			cy.get('[data-test="save-button"]').click()
-			
-			// Wait a while to make sure the saving completed the redirection
-			cy.wait(3000)
-		}
+
+		})
+
+		// click save
+		cy.get('[data-test="save-button"]').click()
+
+		// Wait a while to make sure the saving completed the redirection
+		cy.wait(3000)
 
 	})
 
@@ -170,10 +164,10 @@ describe('Broadposter', () => {
 		// visit the posters page
 		cy.visit('/')
 		
-		let currentTotal = cy.get('[data-test="poster-test"]').its('length')
+		let currentTotal = cy.get('[data-test="poster-test"]').length
 		
 		// Click on one of the test posters
-		cy.get('[data-test="poster-test"]').contains(poster.title).click()
+		cy.get('[data-test="poster-test"]').contains(modifiedTitle).click()
 		
 		// Click on edit
 		cy.get('[data-test="edit-button"]').click()
@@ -187,11 +181,8 @@ describe('Broadposter', () => {
 		// visit the posters page
 		cy.visit('/')
 		
-		// Check that the number of posters is less
-		//cy.get('[data-test="poster-test"]').its('length').should('be.st', currentTotal)
-		
 		// Assert that the updated title cannot be seen on the posters page
-		!cy.contains('[data-test="poster-test"]', modifiedTitle)	
+		cy.contains('[data-test="poster-test"]', modifiedTitle).should('not.exist')
 		
 	})
 	
